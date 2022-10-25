@@ -1,11 +1,7 @@
-import pgzrun
+import pgzrun, pygame
 import random
 
-pygame.init()
-
-pygame.display.set_mode((640,640), pygame.FULLSCREEN)
-pygame.display.init()
-
+draw_once=True
 score = 0
 game_over = False
 velocity_y = 0
@@ -17,6 +13,12 @@ makey.y = 467
 
 obstacles = []
 obstacles_timeout = 0
+
+def on_key_down(key):
+	if key == keys.F:
+		screen.surface = pygame.display.set_mode((640,640), pygame.FULLSCREEN)
+	elif key == keys.W:
+		screen.surface = pygame.display.set_mode((640,640))
 
 def update():
 	global score, game_over, velocity_y, gravity, obstacles_timeout, obstacles
@@ -48,7 +50,12 @@ def update():
 		game_over = True
 
 def draw():
-	global score, game_over
+	global score, game_over, draw_once
+
+	if draw_once:
+		screen.surface = pygame.display.set_mode((640,640), pygame.FULLSCREEN)
+		draw_once = False
+
 	# Draw sky
 	screen.draw.filled_rect(Rect(0,0,640,640), (0,0,0))
 	# Draw ground
@@ -59,7 +66,7 @@ def draw():
 		screen.draw.text('Score: ' + str(score), centerx=320, centery=380, color=(255,255,255), fontsize=40)
 	else:
 		makey.draw()
-		creen.draw.text("Score: " + str(score), (15,10), color=(255,255,255), fontsize=40)
+		screen.draw.text("Score: " + str(score), (15,10), color=(255,255,255), fontsize=40)
 
 		for actor in obstacles:
 			actor.draw();
