@@ -1,6 +1,6 @@
 # Makey Runner
 
-A simple infinite runner starring Makey for Maker Faire Orlando 2022. Runs at 64x64 pixels, and is intended to be displayed on an RGB LED Matrix panel.
+A simple infinite runner starring Makey for Maker Faire Orlando 2022. Runs at 64x64 pixels, and is intended to be displayed on an RGB LED Matrix panel. It's based on [this Pygame Zero course](https://aposteriori.trinket.io/game-development-with-pygame-zero#/ninja-runner/infinite-runner).
 
 ## Running (Pun Intended)
 
