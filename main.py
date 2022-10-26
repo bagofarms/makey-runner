@@ -9,7 +9,7 @@ score = 0
 game_over = False
 velocity_y = 0
 
-gravity = 0.25
+gravity = 0.15
 jump_force = -3
 run_speed = 1
 
@@ -39,17 +39,18 @@ def update():
 
 	for actor in obstacles:
 		actor.x -= run_speed
-		if actor.x < -10:
+		if actor.x < -5:
 			obstacles.remove(actor)
 			score += 1
 
 	if keyboard.up:
-		velocity_y = jump_force
+		if makey.y == 45:
+			velocity_y = jump_force
 
 	makey.y += velocity_y
 	velocity_y += gravity
 	if makey.y > 45:
-		velocity = 0
+		velocity_y = 0
 		makey.y = 45
 
 	if makey.collidelist(obstacles) != -1:
@@ -59,13 +60,14 @@ def draw():
 	global score, game_over, draw_once
 
 	if draw_once:
+		# Set screen size
 		screen.surface = pygame.display.set_mode((WIDTH,HEIGHT), pygame.FULLSCREEN)
+		# Draw ground
+		screen.draw.filled_rect(Rect(0,50,64,14), (0,255,0))
 		draw_once = False
 
 	# Draw sky
-	screen.draw.filled_rect(Rect(0,0,64,64), (0,0,0))
-	# Draw ground
-	screen.draw.filled_rect(Rect(0,50,64,14), (0,255,0))
+	screen.draw.filled_rect(Rect(0,0,64,50), (0,0,0))
 
 	#if game_over:
 	#	screen.draw.text('Game Over', centerx=320, centery=320, color=(255,255,255), fontsize=60)
